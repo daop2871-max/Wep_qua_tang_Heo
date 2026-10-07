@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Món Quà Bí Mật 20/10 Dành Cho Bé Iu Heo 🐷💖</title>
+    <meta name="description" content="Trang web quà tặng 20/10 cực đáng yêu và bất ngờ dành riêng cho Heo!">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canvas Confetti for celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Floating Background Atmosphere -->
+    <div id="particle-container" class="particles"></div>
+    <div id="floating-hearts-layer" class="floating-hearts"></div>
+
+    <!-- Background Music Controller -->
+    <div class="music-controller" id="music-controller">
+        <audio id="bg-music" preload="auto">
+            <source src="music/Default.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- Nút gốc bật / tắt nhạc -->
+        <button id="music-toggle-btn" class="music-btn" title="Bật / Tắt nhạc">
+            <i class="fas fa-music"></i>
+            <span class="music-wave">
+                <span></span><span></span><span></span>
+            </span>
+        </button>
+
+        <!-- Nút Chọn nhạc và Next bài -->
+        <div class="music-menu-buttons">
+            <div class="music-btn-row">
+                <button id="btn-open-playlist" class="music-sub-btn" title="Chọn bài hát">
+                    <i class="fas fa-list-ul"></i>
+                    <span>Chọn nhạc</span>
+                </button>
+                <button id="btn-quick-next" class="music-sub-btn mini-btn" title="Chuyển sang bài tiếp theo trong danh sách">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Badge hiển thị bài đang phát -->
+        <div id="now-playing-pill" class="now-playing-pill">
+            <span class="pill-dot"></span>
+            <span id="now-playing-title" class="pill-title">Nhạc Mặc Định</span>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="app-viewport">
+
+        <!-- ==============================================
+             TRANG 1: LỜI CHÀO 20/10 & MEME 4
+        =============================================== -->
+        <section id="step-1" class="step-card active">
+            <div class="card-inner glass-box">
+                <div class="header-badge">
+                    <span class="badge-tag">💌 Gửi Bé Iu Của Anh</span>
+                </div>
+                
+                <h1 class="title-primary">
+                    Hellooo, chúc bé iu ngày 20/10 zui zẻ nhaa ✨
+                </h1>
+
+                <!-- Video Meme 4 -->
+                <div class="media-container meme-frame">
+                    <div class="sparkle-deco top-left">✨</div>
+                    <div class="sparkle-deco top-right">💖</div>
+
+                    <!-- Dòng chữ trên đầu của nhỏ trong meme -->
+                    <div class="meme-head-speech">
+                        <span class="speech-content">nhớ sài laptop để mở nha, không được sài điện thoạii</span>
+                        <div class="speech-tail"></div>
+                    </div>
+
+                    <video id="meme4-video" class="styled-video-loop" autoplay loop muted playsinline>
+                        <source src="picture/Meme4mp4.mp4" type="video/mp4">
+                        Trình duyệt không hỗ trợ video.
+                    </video>
+                    <div class="cute-paws">🐾 🐾 🐾</div>
+                </div>
+
+                <div class="button-container">
+                    <button id="btn-step-1" class="btn-magic">
+                        <span>Next nèee</span>
+                        <i class="fas fa-arrow-right icon-hover"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TRANG 2: LỜI NHẮN NHỦ YÊU THƯƠNG
+        =============================================== -->
+        <section id="step-2" class="step-card">
+            <div class="card-inner glass-box romantic-box">
+                <div class="floating-sticker heart-sticker">💝</div>
+                <div class="floating-sticker star-sticker">⭐</div>
+
+                <div class="quote-icon">
+                    <i class="fas fa-heart pulsating"></i>
+                </div>
+
+                <h2 class="title-romantic">
+                    Tuy không có gì nhiều mà mong món quà này có thể làm e vui cả ngày nhee, yêuuu&lt;3
+                </h2>
+
+                <div class="mini-illustration-group">
+                    <div class="photo-sticker left-tilt">
+                        <img src="picture/TraiTim.jpg" alt="Trái tim" onerror="this.style.display='none'">
+                    </div>
+                    <div class="photo-sticker right-tilt">
+                        <img src="picture/heo2.jpg" alt="Bé Heo" onerror="this.style.display='none'">
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button id="btn-step-2" class="btn-magic">
+                        <span>Tiếp tục nhee 💕</span>
+                        <i class="fas fa-arrow-right icon-hover"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TRANG 3: NHẬP MẬT KHẨU (HONGPHONG)
+        =============================================== -->
+        <section id="step-3" class="step-card">
+            <div class="card-inner glass-box lock-box" id="lock-card-box">
+                <div class="lock-icon-circle">
+                    <i class="fas fa-lock" id="lock-icon"></i>
+                </div>
+
+                <h2 class="title-secondary">
+                    Nhập mật khẩu để mở khoá các trang tiếp theo 🔐
+                </h2>
+                
+                <p class="hint-text">
+                    <i class="fas fa-lightbulb"></i> Gợi ý: mật khẩu là tên heo+anh viết in hoa không dấu cách, không dấu :3
+                </p>
+
+                <div class="input-form">
+                    <div class="input-wrapper" id="password-wrapper">
+                        <input 
+                            type="text" 
+                            id="password-input" 
+                            class="styled-input" 
+                            placeholder="Nhập mật khẩu bí mật..." 
+                            autocomplete="off"
+                            spellcheck="false"
+                        >
+                        <button id="btn-clear-input" class="clear-input-btn" title="Xóa" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <button id="btn-submit-password" class="btn-magic submit-btn">
+                        <span>Mở Khoá 🔓</span>
+                    </button>
+                </div>
+
+                <!-- KHU VỰC THÔNG BÁO LỖI KHI NHẬP SAI -->
+                <div id="wrong-password-alert" class="wrong-alert-box hidden">
+                    <div class="wrong-bubble">
+                        <p id="wrong-message-text" class="wrong-text">
+                            "Sai rồi nhee, nhập lại đi, k biết thì đi hỏi 'cục cức trôi sông kìaa' 😜"
+                        </p>
+                    </div>
+                    <div class="meme-wrong-img-wrapper">
+                        <img src="picture/Meme5.jpg" alt="Meme 5" class="meme-smug-img">
+                    </div>
+                </div>
+
+                <!-- THÔNG BÁO CHÍNH XÁC KHI MỞ KHOÁ THÀNH CÔNG -->
+                <div id="correct-password-alert" class="correct-alert-box hidden">
+                    <div class="correct-bubble">
+                        <i class="fas fa-check-circle success-icon"></i>
+                        <span>Đúng ùi nheee! Giỏi quớ zậy bé iu 🎉</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TRANG 4: VIDEO TỰ CHỌN (KỶ NIỆM)
+        =============================================== -->
+        <section id="step-4" class="step-card">
+            <div class="card-inner glass-box video-showcase-box">
+                <h2 class="title-secondary">
+                    Một chút quà nhỏ tặng heo 💕
+                </h2>
+
+                <div class="custom-video-wrapper">
+                    <!-- Bạn có thể đổi src video dưới đây thành video bạn muốn -->
+                    <video id="custom-memory-video" class="main-featured-video" controls playsinline preload="metadata">
+                        <source src="picture/video_ky_niem.mp4" type="video/mp4">
+                        <source src="picture/Meme4mp4.mp4" type="video/mp4">
+                        Trình duyệt không hỗ trợ phát video.
+                    </video>
+                </div>
+
+                <div class="button-container">
+                    <button id="btn-step-4" class="btn-magic">
+                        <span>nextt</span>
+                        <i class="fas fa-arrow-right icon-hover"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TRANG 5: HỘP QUÀ BẤT NGỜ (GACHA WISH SIMULATOR)
+        =============================================== -->
+        <section id="step-5" class="step-card">
+            <div class="card-inner glass-box gift-showcase-box">
+                <div class="header-badge">
+                    <span class="badge-tag">🎁 Quà Bất Ngờ Cho Heo</span>
+                </div>
+
+                <h2 class="title-primary gift-title">
+                    ngoài ra anh còn có một món quà "nho nhỏ" cho Heo nèe ✨
+                </h2>
+
+                <!-- HỘP QUÀ TƯƠNG TÁC 3D -->
+                <div class="gift-interactive-area">
+                    <div id="gift-box" class="gift-box" role="button" aria-label="Hộp quà bí mật" tabindex="0">
+                        <!-- Nắp hộp quà & Nơ -->
+                        <div class="gift-lid" id="gift-lid">
+                            <div class="gift-bow">
+                                <div class="bow-loop bow-left"></div>
+                                <div class="bow-loop bow-right"></div>
+                                <div class="bow-center"></div>
+                            </div>
+                            <div class="lid-ribbon"></div>
+                        </div>
+                        <!-- Thân hộp quà -->
+                        <div class="gift-body">
+                            <div class="body-ribbon-vertical"></div>
+                            <div class="body-ribbon-horizontal"></div>
+                            <!-- Icon quà bung ra khi mở -->
+                            <div class="gift-surprise-sparkles" id="gift-surprise">
+                                <span class="surprise-item item-1">✨</span>
+                                <span class="surprise-item item-2">💖</span>
+                                <span class="surprise-item item-3">⭐</span>
+                                <span class="surprise-item item-4">🎁</span>
+                                <span class="surprise-item item-5">🌟</span>
+                            </div>
+                        </div>
+                        <div class="gift-shadow"></div>
+                    </div>
+
+                    <!-- Chỉ báo số lần bấm & gợi ý -->
+                    <div class="gift-hint-wrapper">
+                        <div class="gift-click-indicator" id="gift-indicators">
+                            <span class="dot-heart dot-1" id="dot-1">🤍</span>
+                            <span class="dot-heart dot-2" id="dot-2">🤍</span>
+                            <span class="dot-heart dot-3" id="dot-3">🤍</span>
+                            <span class="dot-heart dot-4" id="dot-4">🤍</span>
+                        </div>
+                        <p id="gift-status-text" class="gift-status-text">
+                            Bấm vào hộp quà để mở nè! (0/4) 👆
+                        </p>
+                    </div>
+                </div>
+
+                <!-- KHU VỰC TIẾP TỤC SAU KHI MỞ QUÀ -->
+                <div id="gift-next-container" class="gift-post-open-area hidden">
+                    <p class="gift-shop-hint" id="gift-shop-hint">
+                        nếu em không đủ roll thì mua trong shopp nha, không mất xiền đâu
+                    </p>
+                    <p class="gift-roll-prompt" id="gift-roll-prompt">
+                        em roll xong rùi thì next nheee 🥰
+                    </p>
+                    <div class="button-container">
+                        <button id="btn-ogee" class="btn-magic btn-ogee" disabled>
+                            <span id="btn-ogee-text">Ogee (5s)</span>
+                            <i class="fas fa-arrow-right icon-hover"></i>
+                        </button>
+                    </div>
+                    <p id="ogee-timer-hint" class="ogee-countdown-hint">
+                        ⏳ Bé cứ thong thả mở tab roll tối thiểu 5s nha... (<span id="ogee-countdown-sec">5</span>s)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TRANG 6: CẢM XÚC CỦA HEO & MINI-GAME CHỮA LÀNH TRÁI TIM CHO CÚN
+        =============================================== -->
+        <section id="step-6" class="step-card">
+            <div class="card-inner glass-box feedback-main-box">
+
+                <!-- 1. GIAO DIỆN HỎI BAN ĐẦU: "Bé có thích món quà này khom" -->
+                <div id="fb-view-question" class="fb-view-panel">
+                    <div class="header-badge">
+                        <span class="badge-tag">💌 Góc Thăm Dò Ý Kiến</span>
+                    </div>
+
+                    <h2 class="title-primary fb-main-title">
+                        Bé có thích món quà này khom 💕
+                    </h2>
+
+                    <div class="fb-floating-stickers">
+                        <span class="fb-sticker-icon wobble-item">🎁</span>
+                        <span class="fb-sticker-icon pulse-item">✨</span>
+                        <span class="fb-sticker-icon float-item">💖</span>
+                    </div>
+
+                    <div class="button-container fb-choice-buttons">
+                        <button id="btn-fb-co" class="btn-magic btn-choice btn-co">
+                            <span>Cóo 💖</span>
+                        </button>
+                        <button id="btn-fb-khong" class="btn-secondary btn-choice btn-khong">
+                            <span>Khongg 🥺</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. GIAO DIỆN "THẬT LUÔN" (KHI CHỌN "Cóo") -->
+                <div id="fb-view-really" class="fb-view-panel hidden">
+                    <div class="header-badge">
+                        <span class="badge-tag">👀 Nghi Vấn Lắm Nha</span>
+                    </div>
+
+                    <h2 class="title-primary fb-main-title">
+                        Thật luôn 🥺
+                    </h2>
+
+                    <p class="fb-sub-hint">
+                        Bé hứa danh dự không được lừa anh đâu đó nhaaa ~
+                    </p>
+
+                    <div class="button-container fb-choice-buttons vertical-layout">
+                        <button id="btn-really-true" class="btn-magic btn-choice btn-really-true">
+                            <span>1. Thậtt 🥰</span>
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button id="btn-really-joke" class="btn-secondary btn-choice btn-really-joke">
+                            <span>2. Khom, đùa á 😜</span>
+                            <i class="fas fa-grin-tongue-wink"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2A. GIAO DIỆN "YÊU THÍAAA" (KHI CHỌN "Thậtt") -->
+                <div id="fb-view-love" class="fb-view-panel hidden">
+                    <div class="header-badge">
+                        <span class="badge-tag">🥰 Cún Hạnh Phúc Quá Đi</span>
+                    </div>
+
+                    <h1 class="title-primary fb-main-title love-text-glow">
+                        Yêu thíaaa 🥰💖
+                    </h1>
+
+                    <p class="fb-sub-hint love-subtext">
+                        Biết ngay em thích màaa! Cún thương Heo nhứt trần đời luôn moah moah! 🐶✨
+                    </p>
+
+                    <div class="love-celebration-graphic">
+                        <span class="giant-love-emoji pulsating">💖</span>
+                    </div>
+
+                    <div class="button-container">
+                        <button id="btn-love-proceed" class="btn-magic">
+                            <span>Next nèee 💕</span>
+                            <i class="fas fa-arrow-right icon-hover"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2B. GIAO DIỆN HIỂN THỊ PAIMON MẾU (KHI CHỌN "Khom, đùa á") -->
+                <div id="fb-view-paimon-meu" class="fb-view-panel hidden">
+                    <div class="header-badge">
+                        <span class="badge-tag">😿 Quê Chưa Kìaaa</span>
+                    </div>
+
+                    <h2 class="title-primary fb-main-title">
+                        Ủa đùa tui hảaa?! 😾
+                    </h2>
+
+                    <div class="paimon-meu-frame polaroid-photo">
+                        <img src="picture/PaimonMeu.jpg" alt="Paimon Mếu máo" class="paimon-meu-img">
+                        <div class="polaroid-caption-text">Mặt ai đó lúc biết bị đùa... Huhu dỗi gòi á 🥺</div>
+                    </div>
+
+                    <p class="fb-sub-hint paimon-meu-hint">
+                        Làm người ta mừng hụt hà... Cún bùn thiu luôn kìa, Heo mau dỗ cún đi! 🐾
+                    </p>
+
+                    <div class="button-container">
+                        <button id="btn-paimon-meu-next" class="btn-magic">
+                            <span>Dỗ cún nèee 🥺</span>
+                            <i class="fas fa-heart-crack"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. GIAO DIỆN "KHONGG" & TRÒ CHƠI HỨNG MẢNH TRÁI TIM -->
+                <div id="fb-view-game" class="fb-view-panel hidden">
+                    <div class="header-badge">
+                        <span class="badge-tag">💔 Cứu Lấy Trái Tim Cho Cún</span>
+                    </div>
+
+                    <h2 class="title-primary fb-game-title">
+                        Cún đã bùnn, Heo cần thu những mảnh trái tim rớt để cún vui lại
+                    </h2>
+
+                    <!-- Ảnh Paimon Khóc meme -->
+                    <div class="paimon-khoc-banner">
+                        <div class="paimon-khoc-card">
+                            <img src="picture/PaimonKhoc.jpg" alt="Paimon Khóc thét" class="paimon-khoc-img">
+                            <span class="paimon-khoc-caption">Paimon cũng khóc thét rùi nèee 😭</span>
+                        </div>
+                    </div>
+
+                    <!-- Khu vực điểm số & Hướng dẫn -->
+                    <div class="game-hud-bar">
+                        <div class="game-progress-indicator">
+                            <span class="hud-label">Mảnh tim đã thu thập:</span>
+                            <span id="game-score-badge" class="hud-badge">0 / 5 💖</span>
+                        </div>
+                        <p class="game-control-tip">
+                            👆 <b>Cách chơi:</b> Rê chuột / vuốt ngón tay để di chuyển trái tim hứng tim rơi từ trên trời xuống nha!
+                        </p>
+                    </div>
+
+                    <!-- SÂN KHẤU TRÒ CHƠI HỨNG TIM -->
+                    <div id="heart-game-arena" class="heart-game-arena">
+                        
+                        <!-- CHÚ CÚN BÊN TRÁI (TƯƠNG TÁC THEO TRÁI TIM TO) -->
+                        <div id="game-puppy" class="game-puppy sad-pup">
+                            <div id="puppy-speech-bubble" class="puppy-speech-bubble">
+                                <span id="puppy-speech-text">Hức... Cún buồn quá à... 🥺</span>
+                                <div class="puppy-speech-tail"></div>
+                            </div>
+
+                            <!-- SVG CHÚ CÚN TƯƠNG TÁC CHI TIẾT -->
+                            <div class="puppy-svg-wrap">
+                                <svg id="puppy-svg" viewBox="0 0 120 120" class="puppy-svg" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <radialGradient id="pupGlow" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#FFF3E0"/>
+                                            <stop offset="100%" stop-color="#FFE0B2"/>
+                                        </radialGradient>
+                                        <linearGradient id="corgiFur" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#FFA726"/>
+                                            <stop offset="60%" stop-color="#FB8C00"/>
+                                            <stop offset="100%" stop-color="#F57C00"/>
+                                        </linearGradient>
+                                        <linearGradient id="earInnerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#FFAB91"/>
+                                            <stop offset="100%" stop-color="#FF8A65"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- Đuôi chú cún (Cụp khi buồn, vẫy tít khi vui) -->
+                                    <g id="puppy-tail-group" class="puppy-tail-group">
+                                        <path id="puppy-tail-path" d="M 28 84 C 14 88 10 76 17 69 C 22 72 26 77 28 84 Z" fill="#FB8C00"/>
+                                    </g>
+
+                                    <!-- Thân chú cún -->
+                                    <ellipse cx="55" cy="80" rx="30" ry="20" fill="url(#corgiFur)"/>
+                                    <ellipse cx="55" cy="83" rx="19" ry="14" fill="#FFFFFF"/>
+
+                                    <!-- Chân trước -->
+                                    <ellipse cx="40" cy="95" rx="7" ry="5" fill="#FFFFFF" stroke="#FFA726" stroke-width="1.5"/>
+                                    <ellipse cx="70" cy="95" rx="7" ry="5" fill="#FFFFFF" stroke="#FFA726" stroke-width="1.5"/>
+
+                                    <!-- Đầu & Mặt chú cún (Có thể nghiêng nhẹ theo trái tim) -->
+                                    <g id="puppy-head-group" class="puppy-head-group">
+                                        <!-- Tai trái (Cụp tai khi buồn, vểnh tai khi vui) -->
+                                        <g id="puppy-ear-left" class="puppy-ear-left">
+                                            <path d="M 38 34 C 26 18 14 24 13 39 C 12 52 28 47 38 34 Z" fill="#E65100"/>
+                                            <path d="M 34 35 C 26 24 18 28 17 38 C 16 46 26 43 34 35 Z" fill="url(#earInnerGrad)"/>
+                                        </g>
+
+                                        <!-- Tai phải (Cụp tai khi buồn, vểnh tai khi vui) -->
+                                        <g id="puppy-ear-right" class="puppy-ear-right">
+                                            <path d="M 72 34 C 84 18 96 24 97 39 C 98 52 82 47 72 34 Z" fill="#E65100"/>
+                                            <path d="M 76 35 C 84 24 92 28 93 38 C 94 46 84 43 76 35 Z" fill="url(#earInnerGrad)"/>
+                                        </g>
+
+                                        <!-- Đầu tròn xinh -->
+                                        <circle cx="55" cy="48" r="26" fill="url(#corgiFur)"/>
+                                        <!-- Vệt lông trắng giữa trán và mõm -->
+                                        <path d="M 51 28 C 55 25 59 25 63 28 C 65 38 67 44 71 52 C 68 62 42 62 39 52 C 43 44 45 38 51 28 Z" fill="#FFFFFF"/>
+
+                                        <!-- Mắt trái (Lòng trắng + Con ngươi liếc nhìn theo trái tim) -->
+                                        <ellipse cx="44" cy="44" rx="6" ry="6.5" fill="#FFFFFF" stroke="#4A5568" stroke-width="1"/>
+                                        <g id="pupil-left" class="pupil-element">
+                                            <circle cx="44" cy="44" r="3.8" fill="#1A202C"/>
+                                            <circle cx="45.2" cy="42.6" r="1.3" fill="#FFFFFF"/>
+                                        </g>
+
+                                        <!-- Mắt phải (Lòng trắng + Con ngươi liếc nhìn theo trái tim) -->
+                                        <ellipse cx="66" cy="44" rx="6" ry="6.5" fill="#FFFFFF" stroke="#4A5568" stroke-width="1"/>
+                                        <g id="pupil-right" class="pupil-element">
+                                            <circle cx="66" cy="44" r="3.8" fill="#1A202C"/>
+                                            <circle cx="67.2" cy="42.6" r="1.3" fill="#FFFFFF"/>
+                                        </g>
+
+                                        <!-- Nước mắt rơi khi buồn -->
+                                        <path id="puppy-tear" class="puppy-tear" d="M 40 48 C 38 52 38 56 40 58 C 42 56 42 52 40 48 Z" fill="#4FC3F7"/>
+
+                                        <!-- Má hồng -->
+                                        <ellipse id="puppy-blush-l" cx="35" cy="51" rx="4.5" ry="3" fill="#FF80AB" opacity="0.6"/>
+                                        <ellipse id="puppy-blush-r" cx="75" cy="51" rx="4.5" ry="3" fill="#FF80AB" opacity="0.6"/>
+
+                                        <!-- Mũi cún màu đen bóng -->
+                                        <ellipse cx="55" cy="52" rx="4.5" ry="3.2" fill="#212121"/>
+                                        <ellipse cx="54" cy="51" rx="1.5" ry="1" fill="#FFFFFF" opacity="0.8"/>
+
+                                        <!-- Miệng khi buồn (cong xuống) -->
+                                        <path id="puppy-mouth-sad" class="puppy-mouth-sad" d="M 49 59 Q 55 55 61 59" fill="none" stroke="#2D3748" stroke-width="2.2" stroke-linecap="round"/>
+
+                                        <!-- Miệng khi vui (cười tít toe toét lè lưỡi hồng) -->
+                                        <g id="puppy-mouth-happy" class="puppy-mouth-happy hidden">
+                                            <path d="M 48 57 Q 55 67 62 57 Z" fill="#E53935"/>
+                                            <path d="M 51 61 Q 55 68 59 61" fill="#FF80AB"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- TRÁI TIM TO HỨNG TIM (ĐỔI DẦN TỪ XÁM THÀNH ĐỎ) -->
+                        <div id="heart-catcher" class="heart-catcher" role="button" aria-label="Trái tim hứng điểm">
+                            <div class="catcher-inner">
+                                <svg viewBox="0 0 100 90" class="catcher-svg" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <!-- Gradient xám cho tim lúc chưa hứng -->
+                                        <linearGradient id="catcherGrayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#B0BEC5"/>
+                                            <stop offset="50%" stop-color="#90A4AE"/>
+                                            <stop offset="100%" stop-color="#78909C"/>
+                                        </linearGradient>
+
+                                        <!-- Gradient đỏ rực rỡ lấp lánh khi tim đầy dần -->
+                                        <linearGradient id="catcherRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#FF5252"/>
+                                            <stop offset="40%" stop-color="#FF1744"/>
+                                            <stop offset="100%" stop-color="#D50000"/>
+                                        </linearGradient>
+
+                                        <!-- Mặt nạ cắt fill từ dưới lên trên -->
+                                        <clipPath id="catcherClipMask">
+                                            <rect id="catcher-clip-rect" x="0" y="90" width="100" height="0"/>
+                                        </clipPath>
+                                    </defs>
+
+                                    <!-- 1. LỚP ĐÁY: TRÁI TIM XÁM NGUYÊN BẢN -->
+                                    <path class="heart-path base-gray" 
+                                          d="M 50 82 C 15 55 2 30 15 15 C 28 0 45 6 50 18 C 55 6 72 0 85 15 C 98 30 85 55 50 82 Z"
+                                          fill="url(#catcherGrayGrad)" stroke="#546E7A" stroke-width="2"/>
+
+                                    <!-- 2. LỚP PHỦ: TRÁI TIM ĐỎ DÂNG DẦN THEO TIẾN TRÌNH -->
+                                    <g clip-path="url(#catcherClipMask)">
+                                        <path class="heart-path fill-red"
+                                              d="M 50 82 C 15 55 2 30 15 15 C 28 0 45 6 50 18 C 55 6 72 0 85 15 C 98 30 85 55 50 82 Z"
+                                              fill="url(#catcherRedGrad)" stroke="#FF8A80" stroke-width="2"/>
+                                        <!-- Ánh sáng phản chiếu lung linh trong tim đỏ -->
+                                        <path d="M 28 22 C 33 15 40 15 44 17" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="3" stroke-linecap="round"/>
+                                        <circle cx="23" cy="27" r="2.5" fill="rgba(255,255,255,0.85)"/>
+                                    </g>
+                                </svg>
+
+                                <!-- Phần trăm / Biểu tượng tiến trình trên tim -->
+                                <div id="catcher-percent-label" class="catcher-percent-label">
+                                    0%
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KHU VỰC CÁC MẢNH TIM RỚT XUỐNG -->
+                        <div id="falling-hearts-container" class="falling-hearts-container"></div>
+
+                        <!-- THÔNG BÁO HOÀN THÀNH MINI-GAME -->
+                        <div id="game-complete-overlay" class="game-complete-overlay hidden">
+                            <div class="complete-card">
+                                <span class="complete-sparkle">💖✨🎉</span>
+                                <h3 class="complete-title">Trái Tim Đã Đầy Yêu Thương!</h3>
+                                <p class="complete-desc">Cún đã vui toe toét trở lại rồi nè! Tự động chuyển tiếp sau <strong id="game-countdown-num" style="color: #ffe082; font-size: 1.15rem;">6</strong>s nheee... 💕</p>
+                                <button id="btn-game-instant-next" class="btn-magic btn-complete-next">
+                                    <span>Next luônn nè 🚀</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TRANG 7: VIDEO NENTROLL + 2 CON VỊT + CHÚ CHÓ CORGI
+        =============================================== -->
+        <section id="step-7" class="step-card">
+            <div class="card-inner glass-box troll-stage-box">
+                
+                <!-- Dòng chữ trên cùng video -->
+                <div class="troll-question-banner">
+                    <h2 class="troll-title" id="troll-question-text">
+                        em có yêu anh nhiều hongg 💕
+                    </h2>
+                </div>
+
+                <!-- Khung Video nenTroll & Sân khấu tương tác -->
+                <div class="troll-video-viewport" id="troll-viewport">
+                    
+                    <!-- Video nền nenTroll -->
+                    <video id="troll-bg-video" class="troll-video" autoplay loop muted playsinline>
+                        <source src="picture/nenTroll.mp4" type="video/mp4">
+                        Trình duyệt không hỗ trợ video.
+                    </video>
+
+                    <!-- Lớp mặt nước phủ nhẹ -->
+                    <div class="water-overlay"></div>
+
+                    <!-- THÔNG BÁO TROLL POPUP (KHI CẢ 2 ĐỀU LÀ KHONGG) -->
+                    <div id="troll-speech-bubble" class="troll-toast hidden">
+                        <span>Ủa kì zậy? Giờ cả 2 con đều là "Khongg" rùi nè 😜</span>
+                    </div>
+
+                    <!-- VỊT 1: BAN ĐẦU LÀ CÓO (BẤM VÀO SẼ BIẾN THÀNH KHONGG) -->
+                    <div id="duck-co" class="floating-duck duck-co" role="button" aria-label="Con vịt Cóo">
+                        <div class="duck-speech-label" id="duck-co-label">Cóo 💖</div>
+                        <div class="duck-graphic">
+                            <!-- SVG CHÚ VỊT VÀNG SIÊU DỄ THƯƠNG -->
+                            <svg viewBox="0 0 100 80" class="duck-svg" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="duckGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#FFF176"/>
+                                        <stop offset="60%" stop-color="#FFD54F"/>
+                                        <stop offset="100%" stop-color="#FFB300"/>
+                                    </linearGradient>
+                                    <linearGradient id="beakGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#FF8A65"/>
+                                        <stop offset="100%" stop-color="#FF5722"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Thân vịt -->
+                                <path d="M 20 50 C 15 40 25 30 45 32 C 45 22 55 12 70 12 C 85 12 92 24 88 36 C 96 37 99 43 93 47 C 88 50 82 48 80 50 C 75 68 35 68 20 50 Z" fill="url(#duckGrad1)"/>
+                                <!-- Đuôi vịt vểnh lên -->
+                                <path d="M 18 48 C 10 40 12 32 16 28 C 18 36 22 42 24 46 Z" fill="#FFC107"/>
+                                <!-- Mắt to long lanh -->
+                                <circle cx="75" cy="24" r="4.5" fill="#263238"/>
+                                <circle cx="76.5" cy="22.5" r="1.5" fill="#FFFFFF"/>
+                                <!-- Má hồng đáng yêu -->
+                                <ellipse cx="68" cy="31" rx="4" ry="2.5" fill="#FF80AB" opacity="0.7"/>
+                                <!-- Mỏ vịt cam xinh -->
+                                <path d="M 87 30 C 97 29 101 34 94 37 C 88 38 85 36 85 32 Z" fill="url(#beakGrad)"/>
+                                <!-- Cánh nhỏ -->
+                                <path d="M 40 40 C 52 38 60 45 54 53 C 46 56 36 50 40 40 Z" fill="#FFA000" opacity="0.8"/>
+                                <!-- Gợn sóng nước -->
+                                <ellipse cx="50" cy="62" rx="36" ry="4" fill="rgba(255,255,255,0.4)"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- VỊT 2: BAN ĐẦU LÀ KHONGG (CHẠY NÉ CHUỘT KHÔNG CHO BẤM) -->
+                    <div id="duck-khong" class="floating-duck duck-khong" role="button" aria-label="Con vịt Khongg">
+                        <div class="duck-speech-label" id="duck-khong-label">Khongg 🙈</div>
+                        <div class="duck-graphic">
+                            <svg viewBox="0 0 100 80" class="duck-svg" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="duckGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#FFF9C4"/>
+                                        <stop offset="60%" stop-color="#FFEE58"/>
+                                        <stop offset="100%" stop-color="#FDD835"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M 20 50 C 15 40 25 30 45 32 C 45 22 55 12 70 12 C 85 12 92 24 88 36 C 96 37 99 43 93 47 C 88 50 82 48 80 50 C 75 68 35 68 20 50 Z" fill="url(#duckGrad2)"/>
+                                <path d="M 18 48 C 10 40 12 32 16 28 C 18 36 22 42 24 46 Z" fill="#FBC02D"/>
+                                <circle cx="75" cy="24" r="4.5" fill="#263238"/>
+                                <circle cx="76.5" cy="22.5" r="1.5" fill="#FFFFFF"/>
+                                <ellipse cx="68" cy="31" rx="4" ry="2.5" fill="#FF80AB" opacity="0.7"/>
+                                <path d="M 87 30 C 97 29 101 34 94 37 C 88 38 85 36 85 32 Z" fill="url(#beakGrad)"/>
+                                <path d="M 40 40 C 52 38 60 45 54 53 C 46 56 36 50 40 40 Z" fill="#F57F17" opacity="0.8"/>
+                                <ellipse cx="50" cy="62" rx="36" ry="4" fill="rgba(255,255,255,0.4)"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- VÙNG TƯƠNG TÁC CON CHÓ CORGI MÀU VÀNG Ở GIỮA VIDEO -->
+                    <div id="corgi-hotspot" class="corgi-target" title="Chú cún Corgi">
+                        <!-- Bong bóng chữ "Có" xuất hiện trên đầu chú cún Corgi -->
+                        <div id="corgi-co-bubble" class="corgi-bubble hidden">
+                            <span class="bubble-heart">💖</span>
+                            <span class="bubble-text">Có! Yêu nhiều nhấttt!</span>
+                            <span class="bubble-tail"></span>
+                        </div>
+                        <div class="corgi-click-ring"></div>
+                    </div>
+
+                    <!-- VÙNG TƯƠNG TÁC CHÚ CHÓ SHIBA (ĐỔI MỤC TIÊU SANG CHÚ NÀY KHI SHIBA RA) -->
+                    <div id="shiba-hotspot" class="corgi-target shiba-target" title="Chú chó Shiba" style="display: none;">
+                        <!-- Bong bóng chữ "Có" xuất hiện trên đầu chú Shiba -->
+                        <div id="shiba-co-bubble" class="corgi-bubble hidden">
+                            <span class="bubble-heart">💖</span>
+                            <span class="bubble-text">Có! Yêu nhiều nhấttt!</span>
+                            <span class="bubble-tail"></span>
+                        </div>
+                        <div class="corgi-click-ring"></div>
+                    </div>
+
+                </div>
+
+                <div class="troll-bottom-hint">
+                    <span id="troll-status-tip">Bấm thử xem bé chọn con vịt nào nè? 😉</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TRANG 8: TRANG CUỐI CÙNG & LỜI TÂM SỰ + MEME 2
+        =============================================== -->
+        <section id="step-8" class="step-card">
+            <div class="card-inner glass-box final-box">
+                <div class="confetti-cannon-icon">
+                    🎉✨💖
+                </div>
+
+                <h1 class="final-main-message">
+                    heo không cho anh gửi đồ gì, nma mong Heo zui zẻ nhận nhaa, con gấu bông a mua cũm khá to nên thích thì 2 đứa ôm chung, z nhaaa, tới đây cũm hết ruii
+                </h1>
+
+                <!-- Ảnh Meme 2 -->
+                <div class="final-meme-wrapper">
+                    <div class="polaroid-photo">
+                        <img src="picture/Meme2jpg.jpg" alt="Meme 2" class="final-meme-img">
+                        <div class="polaroid-caption-text">Mặt ai đó lúc nhận gấu bông 🐻🤤</div>
+                    </div>
+                </div>
+
+                <div class="final-signature-section">
+                    <h2 class="hope-banner">Hope you have a nice dayy!! 🌈💖</h2>
+                    <p class="love-sign">From your boy with all my heart ❤️</p>
+                </div>
+
+                <div class="button-container final-buttons">
+                    <button id="btn-restart" class="btn-secondary">
+                        <i class="fas fa-redo-alt"></i>
+                        <span>Xem lại từ đầu nè 🔄</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==============================================
+         MODAL 1: CHỌN BÀI HÁT TRONG FOLDER MUSIC
+    =============================================== -->
+    <div id="music-playlist-modal" class="music-modal-backdrop hidden">
+        <div class="music-modal-box">
+            <div class="music-modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-headphones-alt"></i>
+                    <span>Danh Sách Nhạc Cho Bé Iu 💖</span>
+                </h3>
+                <button id="btn-close-playlist" class="modal-close-btn" title="Đóng">&times;</button>
+            </div>
+            <p class="modal-subtitle">Bé thích nghe bài nào thì bấm vào để đổi nhạc nèe 🥰</p>
+            
+            <div class="playlist-toolbar">
+                <span class="playlist-mode-tag">
+                    <i class="fas fa-redo-alt"></i> Tự động phát lần lượt: <strong>BẬT</strong>
+                </span>
+                <div class="playlist-nav-btns">
+                    <button id="btn-playlist-prev" class="playlist-nav-btn" title="Bài trước">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button id="btn-playlist-next" class="playlist-nav-btn" title="Bài tiếp theo">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="playlist-items-container" class="playlist-items-container">
+                <!-- Được render tự động qua JS với đầy đủ các bài trong folder music -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Script file -->
+    <script src="script.js"></script>
+</body>
+</html>
