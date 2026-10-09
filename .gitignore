@@ -1,5 +1,5 @@
 cloudflared.exe
 .vercel
 node_modules
-
-.vercel
+*backup*
+*original*

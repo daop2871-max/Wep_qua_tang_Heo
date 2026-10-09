@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initGiftBox();
     initFeedbackAndHeartGame();
     initTrollStage();
-    initMemoryVideoFallback();
+    initMemoryVideoHandler();
 });
 
 /* ===================================================
@@ -241,6 +241,14 @@ function goToStep(stepNum) {
     const memoryVideo = document.getElementById("custom-memory-video");
     if (memoryVideo && !memoryVideo.paused) {
         memoryVideo.pause();
+        // Khôi phục nhạc nền nếu trước đó bị dừng khi xem video
+        const bgAudio = document.getElementById("bg-music");
+        const bgMusicBtn = document.getElementById("music-toggle-btn");
+        if (wasBgMusicPlaying && bgAudio && bgAudio.paused) {
+            bgAudio.play().then(() => {
+                if (bgMusicBtn) bgMusicBtn.classList.add("playing");
+            }).catch(() => {});
+        }
     }
 
     // Dọn dẹp mini game nếu rời khỏi step 6
@@ -1778,15 +1786,38 @@ function resetTrollStage() {
 }
 
 /* ===================================================
-   4. FALLBACK THÔNG MINH CHO VIDEO Ở STEP 4
+   4. QUẢN LÝ PHÁT VIDEO KỶ NIỆM Ở STEP 4 (VIDEO MUA SẮM)
 =================================================== */
-function initMemoryVideoFallback() {
+let wasBgMusicPlaying = false;
+
+function initMemoryVideoHandler() {
     const memoryVideo = document.getElementById("custom-memory-video");
     if (!memoryVideo) return;
 
-    // Nếu video kỷ niệm ban đầu không tìm thấy, trình duyệt sẽ tự động thử nguồn tiếp theo
+    const bgAudio = document.getElementById("bg-music");
+    const bgMusicBtn = document.getElementById("music-toggle-btn");
+
+    // Khi người dùng bấm phát video: tự động dừng nhạc nền để nghe rõ âm thanh video
+    memoryVideo.addEventListener("play", () => {
+        if (bgAudio && !bgAudio.paused) {
+            wasBgMusicPlaying = true;
+            bgAudio.pause();
+            if (bgMusicBtn) bgMusicBtn.classList.remove("playing");
+        }
+    });
+
+    // Khi video kết thúc: tự động tiếp tục phát nhạc nền nếu trước đó đang bật
+    memoryVideo.addEventListener("ended", () => {
+        if (wasBgMusicPlaying && bgAudio && bgAudio.paused) {
+            bgAudio.play().then(() => {
+                if (bgMusicBtn) bgMusicBtn.classList.add("playing");
+            }).catch(() => {});
+        }
+    });
+
+    // Fallback xử lý nếu có sự cố tải video
     memoryVideo.addEventListener("error", () => {
-        console.log("Memory video source not found, fallback ready.");
+        console.log("Memory video source fallback check.");
     }, true);
 }
 
@@ -1886,6 +1917,12 @@ function initFloatingHearts() {
 
 // Danh sách tất cả bài hát có sẵn trong folder music
 const MUSIC_PLAYLIST = [
+    {
+        id: "nen-chinh",
+        title: "Nền Chính (Tặng Heo 💕)",
+        artist: "Giai điệu đặc biệt",
+        file: "picture/Nền chính.mp3"
+    },
     {
         id: "default",
         title: "Nhạc Mặc Định",
@@ -2030,6 +2067,10 @@ function toggleMainMusic() {
 
     if (!audio) return;
     if (audio.paused) {
+        const memoryVideo = document.getElementById("custom-memory-video");
+        if (memoryVideo && !memoryVideo.paused) {
+            memoryVideo.pause();
+        }
         audio.play().then(() => {
             if (musicBtn) musicBtn.classList.add("playing");
         }).catch(err => {
@@ -2086,6 +2127,10 @@ function selectLocalSong(index) {
     const song = MUSIC_PLAYLIST[index];
 
     if (audio) {
+        const memoryVideo = document.getElementById("custom-memory-video");
+        if (memoryVideo && !memoryVideo.paused) {
+            memoryVideo.pause();
+        }
         audio.src = song.file;
         audio.loop = false; // Tắt lặp lại 1 bài đơn để sự kiện 'ended' tự động chuyển sang bài tiếp theo
         audio.currentTime = 0;
